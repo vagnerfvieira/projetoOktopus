@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+
+{% block conteudo %}
+
+
+
+  <span><a href='/listaproduto/'> <i class="fas fa-reply"></i>voltar
+    
+    <button type="button" class="btn btn-success">
+      <span class="fa fa-pencil"></span>
+      <span>
+        <a href='/editproduto/{{produto.id}}'>
+          <span><i class='fas fa-edit'>Editar</i></span>
+        </a>
+      </span>
+    </button>
+  </span>
+</span>
+<h1>{{produto.produto}}</h1>
+<div class="col-sm-6">
+  <table class="table table-user-information">
+    <tbody>
+
+      <tr>
+        <th class="text-right">Importado:</th>
+          <td>
+            {% if produto.importado %}
+                <i class="fa fa-check-circle ok"></i>
+            {% else %}
+                <i class='fas fa-minus-circle no'></i>
+            {% endif %}
+          </td>
+        </tr>
+
+        <tr>
+          <th class="text-right">Empresa:</th>
+                <td>{{produto.empresa}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">Pesso(física/jurídica):</th>
+              <td>{{produto.pessoa}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">NCM:</th>
+              <td>{{produto.ncm}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">código do Produto:</th>
+              <td>{{produto.codProd}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">Unidade:</th>
+              <td>{{produto.un}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">Quantidade do Produto:</th>
+              <td>{{produto.qtde}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">Valor Unitário:</th>
+              <td>{{produto.valorUn}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">Fornecedor:</th>
+              <td>{{produto.fornecedor}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">Documento:</th>
+              <td>{{produto.docto}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">Lote:</th>
+              <td>{{produto.lote}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">ICMS:</th>
+              <td>{{produto.icms}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">PIS:</th>
+              <td>{{produto.pis}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">IPI:</th>
+              <td>{{produto.ipi}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">COFINS:</th>
+              <td>{{produto.cofins}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">GTI ou EAN:</th>
+              <td>{{produto.gtinOuEan}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">EX_Tipi:</th>
+              <td>{{produto.extipi}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">CEST:</th>
+              <td>{{produto.cest}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">Palavra chave:</th>
+              <td>{{produto.palchav}}</td>
+        </tr>
+
+        <tr>
+          <th class="text-right">Observções:</th>
+              <td>{{produto.obs}}</td>
+        </tr>
+
+
+    </tbody>
+  </table>
+</div>
+
+{% endblock%}

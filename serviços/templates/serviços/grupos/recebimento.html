@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Lista de Recebimentos{% endblock %}
+
+{% block conteudo %}
+
+<div class='offset-1 col-10 list-div'>
+    <h1>Data do Recebimento:{{despesa.empresa}}</h1>
+    <h1>Data de Recebimento:{{despesa.dt_real}}</h1>
+    <h1>Número da OS:{{despesa.os}}</h1>
+    <h1>Cliente:{{despesa.cliente}}</h1>
+    <h1>Remetente:{{despesa.remetente}}</h1>
+    <h1>Conta:{{despesa.conta}}</h1>
+    <h1>Valor:{{despesa.valor}}</h1>
+    <h1>Documentos:{{despesa.doctos}}</h1>
+    <h1>Observações:{{despesa.obs}}</h1>
+    <h1>Banco:{{despesa.banco}}</h1>
+
+</div> 
+
+
+{% endblock%}

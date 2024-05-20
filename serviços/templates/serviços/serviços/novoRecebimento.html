@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block titulo %}Lista de Recebimentos{% endblock %}
+
+{% block conteudo %}
+
+<div class='offset-1 col-10 list-div'>
+    <h1>Adicione sua Receita</h1>
+    <form method='POST'>
+        {% csrf_token %}
+        {{ form|crispy }}
+        
+        <input type='submit' class='btn btn-success' value='Confirmar Recebimento'> 
+    </form>
+ 
+</div> 
+
+
+
+
+{% endblock%}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Editando '{{cliente.nome}}'{% endblock %}
+
+{% block conteudo %}
+
+<div class='offset-1 col-10 list-div'>
+    <h1>Formulário de Cliente</h1>
+    <div class="top-buffer">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+    
+            {{ form_telefone.management_form }}
+    
+            {% for ft in form_telefone %}
+            <div class="inlineform">
+                <hr>
+                {{ ft }}
+            </div>
+            {% endfor %}
+
+    
+        
+        <input type='submit' class='btn btn-success' value='Atualizar Cliente'> 
+    </form>
+ 
+</div> 
+
+{% endblock%}
+
+{% block scripts %}
+<script type="text/javascript">
+    $(function() {
+        $('.inlineform').formset({
+            prefix: '{{ form_telefone.prefix }}',
+            addText: 'Adicionar telefone',
+            deleteText: 'Excluir Telefone',
+        });
+    })
+</script>
+{% endblock scripts %}

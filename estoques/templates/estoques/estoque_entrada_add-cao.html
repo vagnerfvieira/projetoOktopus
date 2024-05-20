@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block conteudo %}
+
+
+    <div class='offset-1 col-10 list-div'>
+        <h1>Movimentação de Produtos - Entradas</h1>
+        <div class="col-sm-2">
+        <form method='POST'>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <p></p>
+            <p></p>
+            <p></p>
+    </div>
+
+        <h4>Selecione os produtos:</h4>
+
+        {{ form_estoqueItens.management_form}}
+        <div class="row">
+         {% for et in form_estoqueItens %}
+                
+       
+        <div class="inlineform" id="estoque">
+        {{ et }}
+    </div>
+        <hr>
+        </div>
+        {% endfor %}
+
+    
+        <input type='submit' class='btn btn-success' id="add-item" value='Salvar'> 
+        <a id='add-link' href='/estoque_entrada_list/'>
+            <div class='col-1 add-div'>Voltar</div>
+        </a>
+    </form>
+ 
+</div> 
+
+{% endblock conteudo %}
+
+{% block scripts %}
+<script type="text/javascript">
+    $(function() {
+        $('.inlineform').formset({
+            prefix: '{{ form_estoqueItens.prefix }}',
+            addText: 'Adicionar produto',
+            deleteText: 'Excluir produto',
+        });
+    })
+</script>
+{% endblock scripts %}

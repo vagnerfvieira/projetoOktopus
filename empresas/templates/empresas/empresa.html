@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Lista de Despesas{% endblock %}
+
+{% block conteudo %}
+
+<div class='offset-1 col-10 list-div'>
+    <h1>Status:{{empresa.ativo}}</h1>
+    <h1>Nome:{{empresa.nome}}</h1>
+    <h1>CNPJ:{{empresa.cnpj}}</h1>
+    <h1>Rua:{{empresa.rua}}</h1>
+    <h1>Número:{{empresa.numero}}</h1>
+    <h1>Bairro:{{empresa.bairro}}</h1>
+    <h1>Complemento:{{empresa.complemento}}</h1>
+    <h1>CEP:{{empresa.cep}}</h1>
+    <h1>Cidade:{{empresa.cidade}}</h1>
+    <h1>Estado:{{empresa.estado}}</h1>
+    <h1>Email:{{empresa.email}}</h1>
+    <h1>Telefone Celular:{{empresa.telCelular}}</h1>
+    <h1>Telefone Fixo:{{empresa.telFixo}}</h1>
+
+
+    <h1>Rua 2:{{empresa.rua2}}</h1>
+    <h1>Numero 2:{{empresa.numero2}}</h1>
+    <h1>Bairro 2:{{empresa.bairro2}}</h1>
+    <h1>Complemento 2:{{empresa.complemento2}}</h1>
+    <h1>Bairro 2:{{empresa.bairro2}}</h1>
+    <h1>CEP 2:{{empresa.cep2}}</h1>
+    <h1>Cidade 2:{{empresa.cidade2}}</h1>
+    <h1>Estado 2:{{empresa.estado2}}</h1>
+    <h1>Email 2:{{empresa.email2}}</h1>
+    <h1>Telefone Celular 2:{{empresa.telCelular2}}</h1>
+    <h1>Telefone Fixo 2:{{empresa.telFixo2}}</h1>
+
+
+    <h1>Data de Encerramento:{{empresa.dt_enc}}</h1>
+</div> 
+
+
+{% endblock%}

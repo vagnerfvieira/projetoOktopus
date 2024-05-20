@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Lista de teste{% endblock %}
+
+{% block conteudo %}
+
+
+<div class='offset-1 col-10 list-div'>
+    <h1>Pesso(física/jurídica):{{fornecedor.pessoa}}</h1>
+    <h1>Status:{{fornecedor.ativo}}</h1>
+    <h1>Nome do Cliente:{{fornecedor.nome}}</h1>
+    <h1>CPF:{{fornecedor.cpf}}</h1>
+    <h1>CNPJ:{{fornecedor.cnpj}}</h1>
+    <h1>RG:{{fornecedor.rg}}</h1>
+    <h1>email:{{fornecedor.email}}</h1>
+    <h1>telefone Celular:{{fornecedor.telCelular}}</h1>
+    <h1>telefone Fixo:{{fornecedor.telFixo}}</h1>
+    <h1>Data de Encerramento:{{fornecedor.dt_enc}}</h1>
+
+</div>
+
+
+{% endblock%}

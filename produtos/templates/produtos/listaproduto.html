@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Lista de Produtos{% endblock %}
+
+{% block conteudo %}
+
+
+
+<div class='offset-1 col-10 list-div'>
+    <h1> Lista de Produtos </h1>
+
+        <a id='add-link' href='/novoproduto/'>
+            <div class='col-2 add-div'>
+                <i class='fas fa-plus'></i>Adicionar Produto
+            </div>
+        </a>
+
+        <a id='add-link' href='/estoque_entrada_list/'>
+            <div class='col-2 add-div'>
+                <i class='fas fa-plus'></i>Movimentações
+            </div>
+        </a>
+
+    <div class='col-9 search-div'>
+        <input class='form-control' type='text' id='search' name='search' placeholder='Digite o nome .....'>
+        <i class='fas fa-search'></i>
+    </div>
+
+   
+
+
+    {% if produtos %}
+
+        <table class="table table-striped">
+            <thread>
+                <tr>
+                    <th>Importado</th>
+                    <th>NCM</th>
+                    <th>Produto</th>
+                    <th>Preço</th>
+                    <th class="text-center">Estoque</th>
+                    <th class="text-center">Estoque Minimo</th>
+                    <th class="text-center">Editar</th>
+                    <th class="text-center">Excluir</th>
+                </tr>
+            </thread>
+            <tbody>
+                {% for produto in produtos %}
+                
+                 
+                        <tr>
+                            <td>
+                                {% if produto.importado %}
+                                    <i class="fa fa-check-circle ok"></i>
+                                {% else %}
+                                    <i class='fas fa-minus-circle no'></i>
+                                {% endif %}
+                            </td>
+                            <td>{{ produto.ncm}}</td>
+                            <td><span><a href='/produto/{{produto.id}}'>{{ produto.produto}}</td>
+                            <td>R$<span class="pull-right"></span>{{ produto.valorUn}}</td>
+                            <td class="text-center">{{ produto.qtde}}</td>
+                            <td class="text-center">{{ produto.estoque_minimo}}</td>
+                            <td> <a href='/delete/{{produto.id}}' class='delete-btn'><span><i class='fas fa-trash'></i></span></a></span></td>
+                            <td><a href='/editproduto/{{produto.id}}'><span><i class='fas fa-edit'></i></span></a></td>
+                            </a></span>
+                            
+                        </tr>
+                 
+               
+                  
+
+                {% endfor %}
+            </tbody>
+
+        </table>
+    {% else %}
+        <p class="alert alert-warning">Não há produtos no estoque</p>
+    {% endif %}
+
+
+
+    {% endblock conteudo %}

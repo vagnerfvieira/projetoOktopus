@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Importar Dados{% endblock %}
+
+{% block conteudo %}
+<div class="container">
+  <h2>Importar Dados</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Importar</button>
+  </form>
+ 
+  {% comment %} Lista de Produtos Importados {% endcomment %}
+  <h2>Lista Produtos Importados</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>importado</th>
+        <th>Produto</th>
+        <th>quantidade</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for produto in produtos %}
+        <tr>
+          <td>{{ produto.importado }}</td>
+          <td>{{ produto.produto }}</td>
+          <td>{{ produto.qtde }}</td>
+          <td>{{ produto.valorUn }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

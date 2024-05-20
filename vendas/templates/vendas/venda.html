@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Lista de Despesas{% endblock %}
+
+{% block conteudo %}
+
+<div class='offset-1 col-10 list-div'>
+    <h1>Data de Pagamento:{{despesa.empresa}}</h1>
+    <h1>Data de Pagamento:{{despesa.dt_real}}</h1>
+    <h1>Número da OS:{{despesa.os}}</h1>
+    <h1>Cliente:{{despesa.cliente}}</h1>
+    <h1>Fornecedor:{{despesa.fornecedor}}</h1>
+    <h1>Conta:{{despesa.conta}}</h1>
+    <h1>Valor:{{despesa.valor}}</h1>
+    <h1>Documentos:{{despesa.doctos}}</h1>
+    <h1>Observações:{{despesa.obs}}</h1>
+    <h1>Banco:{{despesa.banco}}</h1>
+
+</div> 
+
+
+{% endblock%}

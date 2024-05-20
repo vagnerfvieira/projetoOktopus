@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block conteudo %}
+
+<div class='offset-1 col-10 list-div'>
+    <h1>Adicione o novo Cliente</h1>
+    <form method='POST'>
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        {{ form_telefone.management_form}}
+
+        {% for ft in form_telefone %}
+        <div class="inlineform">
+        {{ ft }}
+        <hr>
+        </div>
+        {% endfor %}
+
+        
+        <input type='submit' class='btn btn-success' value='Cadastrar Cliente'> 
+    </form>
+ 
+</div> 
+
+{% endblock conteudo %}
+
+{% block scripts %}
+<script type="text/javascript">
+    $(function() {
+        $('.inlineform').formset({
+            prefix: '{{ form_telefone.prefix }}',
+            addText: 'Adicionar telefone',
+            deleteText: 'Excluir Telefone',
+        });
+    })
+</script>
+{% endblock scripts %}

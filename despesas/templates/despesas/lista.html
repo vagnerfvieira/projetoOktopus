@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Lista de Despesas{% endblock %}
+
+{% block conteudo %}
+
+<div class='offset-1 col-10 list-div'>
+    <h1> Lista de Despesas </h1>
+        <a id='add-link' href='/novadespesa/'>
+            <div class='col-2 add-div'>
+                <i class='fas fa-plus'></i>Adicionar Despesa 
+            </div>
+        </a>
+
+    <div class='col-9 search-div'>
+        <form method='GET' id='search-form'>
+            <input class='form-control' type='text' id='search' name='search' placeholder='Digite o nome .....' value='{{ request.GET.search }}'>
+            <i class='fas fa-search' id='search-btn'></i>
+        </form>
+    </div>
+
+    <div class='col-12 filter-div'>
+        <span>Filtar por:</span>
+        <select name='filter' id='filter' class='form-control'>
+            <option value=''>Escolha uma opção</option>
+            <option value='done'>Confirmadas</option>
+            <option value='doing'>Pendentes</option>
+        </select>
+    </div>
+
+    {% if messages %}
+        <ul class='messages'>
+            {% for message in messages %}
+                <li {% if message.tags %} class='alert alert-{{message.tags}}'{% endif %}>{{message}}</li>
+
+            {% endfor %}
+
+        </ul>
+
+    {% endif %}
+
+
+   
+    <ul class='lista_despesa'>
+        {% for despesa in despesas %}
+        {%  if despesa.done == 'doing' %}
+            <li class='item-despesa'>
+        {% else %}
+            <li class='item-despesa done'>
+        {% endif %}
+            <span><a href='/despesa/{{despesa.id}}'>
+                {{despesa.dt_real}}
+                {{despesa.fornecedor}}
+                {{despesa.valor}}</span>
+                    <a href='/delete/{{despesa.id}}' class='delete-btn'><span><i class='fas fa-trash'></i></span></a>
+                    <a href='/editDespesa/{{despesa.id}}'><span><i class='fas fa-edit'></i></span></a>
+                    <a href='/changestatus/{{despesa.id}}'><span><i class='fas fa-thumbs-up'></i></span></a>           
+            </li>   
+        {% endfor %}
+    </ul>
+
+    <div class='pagination'>
+        <span class='step-links'>
+            {% if despesas.has_previous %}
+                <a href='?page={{ despesas.previous_page_number }}'><i class='fas fa-arrow-left'></i></a>
+            {% endif %}
+
+            {% if despesas.paginator.num_pages%}
+                <span class='current'>
+                    {{ despesas.number }} de {{ despesas.paginator.num_pages }}
+                </span>
+            {% endif %}
+
+            {% if despesas.has_next %}
+                <a href='?page={{ despesas.next_page_number }}'><i class='fas fa-arrow-right'></i></a>
+            {% endif %}
+
+        </span>
+    </div>    
+
+</div> 
+
+{% endblock%}

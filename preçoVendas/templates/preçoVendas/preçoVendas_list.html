@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<div class='offset-1 col-10 list-div'></div>
+
+    <a id='add-link' href='/preçoVenda_add/'>
+        <div class='col-2 add-div'>
+            <i class='fas fa-plus'></i>Preço de Venda
+        </div>
+    </a>
+
+    <div class='col-9 search-div'>
+    <input class='form-control' type='text' id='search' name='search' placeholder='Digite o nome .....'>
+    <i class='fas fa-search'></i>
+    </div>
+
+
+        {% for preçoVenda in preçoVendas %}
+ 
+        <ul class='preço_venda_list'>
+            <li class='preço-venda'>
+                
+                <span><a href='#'>
+                    {{preçoVenda.funcionario}}
+                    {{preçoVenda.descricao}}
+                    </a></span>
+
+                <a href='/preçoVenda_delete/{{preçoVenda.id}}'><span><i class='fas fa-trash'></i></span></a>
+
+                <a href='/preçoVenda_edit/{{preçoVenda.id}}'><span><i class='fas fa-edit'></i></span></a>
+                
+                
+            </li>    
+        </ul>
+    
+    {% endfor %}
+
+
+
+
+    </div>
+
+{% endblock conteudo %}

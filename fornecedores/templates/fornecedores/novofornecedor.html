@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Lista de {% endblock %}
+
+{% block conteudo %}
+
+<div class='offset-1 col-10 list-div'>
+    <a id='add-link' href='/listafornecedor/'>
+        <div class='col-2 add-div'>
+            <i class='fa fa-arrow-left'></i>   Voltar
+        </div>
+    </a>
+
+    <h1>Adicione o novo Fornecedor</h1>
+    <form method='POST'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <input type='submit' class='btn btn-success' value='Cadastrar Fornecedor'> 
+    </form>
+ 
+</div> 
+
+
+
+
+{% endblock%}

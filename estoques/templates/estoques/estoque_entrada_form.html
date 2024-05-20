@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+{% load bootstrap %}
+
+{% block conteudo %}
+
+<span><a href='/estoque_entrada_list/'>Voltar</a></span>
+<h1>Entrada </h1>
+
+<div class="row">
+    <div class="cols">
+        <form method="POST" novalidate>
+            {% csrf_token %}
+            <legend style="border-bottom: 1px solid #e5e5e5;">Estoque Entrada</legend>
+            <div class="row">
+                <div class="col-sm-6">
+                    
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock conteudo %}

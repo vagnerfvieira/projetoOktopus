@@ -1,0 +1,12 @@
+python manage.py runserver
+django-admin startapp bancos
+django-admin startproject myproject
+python .\manage.py makemigrations
+python .\manage.py migrate
+python .\manage.py flush(limpa bd)
+
+python --version
+pip --version
+pip install django
+pip freeze(relação de instalações e versões)
+pip list(relação de instalações)

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Lista de Empresas{% endblock %}
+
+{% block conteudo %}
+
+<div class='offset-1 col-10 list-div'>
+    <h1> Lista de Empresas </h1>
+        <a id='add-link' href='/novaempresa/'>
+            <div class='col-2 add-div'>
+                <i class='fas fa-plus'></i>Adicionar Empresa
+            </div>
+        </a>
+
+    <div class='col-9 search-div'>
+        <input class='form-control' type='text' id='search' name='search' placeholder='Digite o nome .....'>
+        <i class='fas fa-search'></i>
+    </div>
+
+    {% if messages %}
+        <ul class='messages'>
+            {% for message in messages %}
+                <li {% if message.tags %} class='alert alert-{{message.tags}}'{% endif %}>{{message}}</li>
+
+            {% endfor %}
+
+        </ul>
+
+    {% endif %}
+
+
+   
+    <ul class='lista_empresa'>
+        {% for empresa in empresas %}
+        <li class='item-empresa'>
+
+            <span><a href='/empresa/{{empresa.id}}'>
+                {{empresa.nome}}
+                {{empresa.cnpj}}</span>
+            <a href='/deleteEmpresa/{{empresa.id}}'><span><i class='fas fa-trash'></i></span></a>
+            <a href='/editEmpresa/{{empresa.id}}'><span><i class='fas fa-edit'></i></span></a>
+        </li>   
+        {% endfor %}
+    </ul>
+
+    <div class='pagination'>
+        <span class='step-links'>
+            {% if empresas.has_previous %}
+                <a href='?page={{ empresas.previous_page_number }}'><i class='fas fa-arrow-left'></i></a>
+            {% endif %}
+
+            <span>
+                {{ empresas.number }} de {{ empresas.paginator.num_pages }}
+            </span>
+
+            {% if empresas.has_next %}
+                <a href='?page={{ empresas.next_page_number }}'><i class='fas fa-arrow-right'></i></a>
+            {% endif %}
+
+        </span>
+    </div>    
+
+</div> 
+
+{% endblock%}

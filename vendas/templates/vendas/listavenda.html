@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Lista de Vendas{% endblock %}
+
+{% block conteudo %}
+
+<div class='offset-1 col-10 list-div'>
+    <h1> Lista de Vendas </h1>
+        <a id='add-link' href='/novavenda/'>
+            <div class='col-2 add-div'>
+                <i class='fas fa-plus'></i>Adicionar Venda 
+            </div>
+        </a>
+
+    <div class='col-9 search-div'>
+        <form method='GET' id='search-form'>
+            <input class='form-control' type='text' id='search' name='search' placeholder='Digite o nome .....' value='{{ request.GET.search }}'>
+            <i class='fas fa-search' id='search-btn'></i>
+        </form>
+    </div>
+
+    <div class='col-12 filter-div'>
+        <span>Filtar por:</span>
+        <select name='filter' id='filter' class='form-control'>
+            <option value=''>Escolha uma opção</option>
+            <option value='done'>Confirmadas</option>
+            <option value='doing'>Pendentes</option>
+        </select>
+    </div>
+
+    {% if messages %}
+        <ul class='messages'>
+            {% for message in messages %}
+                <li {% if message.tags %} class='alert alert-{{message.tags}}'{% endif %}>{{message}}</li>
+
+            {% endfor %}
+
+        </ul>
+
+    {% endif %}
+
+
+   
+    <ul class='lista_venda'>
+        {% for venda in vendas %}
+        {%  if venda.done == 'doing' %}
+            <li class='item-venda'>
+        {% else %}
+            <li class='item-venda done'>
+        {% endif %}
+            <span><a href='/venda/{{venda.id}}'>
+                {{venda.dt_real}}
+                {{venda.cliente}}
+                {{venda.valor}}</span>
+                    <a href='/delete/{{venda.id}}' class='delete-btn'><span><i class='fas fa-trash'></i></span></a>
+                    <a href='/edivenda/{{venda.id}}'><span><i class='fas fa-edit'></i></span></a>
+                    <a href='/changestatus/{{venda.id}}'><span><i class='fas fa-thumbs-up'></i></span></a>           
+            </li>   
+        {% endfor %}
+    </ul>
+
+    <div class='pagination'>
+        <span class='step-links'>
+            {% if vendas.has_previous %}
+                <a href='?page={{ vendas.previous_page_number }}'><i class='fas fa-arrow-left'></i></a>
+            {% endif %}
+
+            {% if vendas.paginator.num_pages%}
+                <span class='current'>
+                    {{ vendas.number }} de {{ vendas.paginator.num_pages }}
+                </span>
+            {% endif %}
+
+            {% if vendas.has_next %}
+                <a href='?page={{ vendas.next_page_number }}'><i class='fas fa-arrow-right'></i></a>
+            {% endif %}
+
+        </span>
+    </div>    
+
+</div> 
+
+{% endblock%}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+
+<a id='add-link' href='/estoque_entrada_add/'>
+    <div class='col-2 add-div'>
+        <i class='fas fa-plus'></i>Adicionar Produto
+    </div>
+</a>
+
+<div class='col-9 search-div'>
+<input class='form-control' type='text' id='search' name='search' placeholder='Digite o nome .....'>
+<i class='fas fa-search'></i>
+</div>
+
+
+{% if estoques %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>item</th>
+                <th>nf</th>
+                <th>data</th>
+                <th>funcinário</th>
+            </tr>
+        </thread>
+
+        <tbody>
+            {% for estoque in estoques %}
+                <tr>
+                    <td><span><a href='/estoque_entrada_detail/{{ estoque.id }}'>{{ estoque}}</td>
+                    <td>{{ estoque.nf_formated }}</td>
+            <td>{{ estoque.created }}</td>
+            <td>{{ estoque.funcionario.first_name }}</td>
+                        </span>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+{% else %}
+    <p class="alert alert-warning">Sem itens na lista</p>
+
+
+{% endif %}
+
+
+
+{% endblock conteudo %}

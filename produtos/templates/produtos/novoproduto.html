@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block conteudo %}
+
+<div class='offset-1 col-10 list-div'>
+
+    <a id='add-link' href='/listaproduto/'>
+        <div class='col-2 add-div'>
+            <i class='fa fa-arrow-left'></i>   Voltar
+        </div>
+    </a>
+
+    <h1>Adicione novo produto</h1>
+    <form method='POST'>
+        {% csrf_token %}
+        {{ form|crispy }}
+
+       
+        
+        <input type='submit' class='btn btn-success'  value='Cadastrar Produto'> 
+        <div id="product-out">
+
+        </div>
+    </form>
+ 
+</div> 
+
+
+
+
+{% endblock%}

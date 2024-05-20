@@ -1,0 +1,9 @@
+{% if produtos %}
+    <p class="badge bg-danger">produto já cadastrado </p>
+    <h5>quantidade teste:{{produto.quantidade}}</h1>
+
+{% else %}
+        <p class="badge bg-success">produto disponível para cadastro </p>
+        <h5>quantidade:{{produto.quantidade}}</h1>
+
+{% endif %}

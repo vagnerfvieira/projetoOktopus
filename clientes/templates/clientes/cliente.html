@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Lista de Clientes{% endblock %}
+
+{% block conteudo %}
+
+
+<div class='offset-1 col-10 list-div'>
+    <h1>Empresa:{{cliente.empresa}}</h1>
+    <h1>Pesso(física/jurídica):{{cliente.pessoa}}</h1>
+    <h1>Status:{{cliente.ativo}}</h1>
+    <h1>Nome do Cliente:{{cliente.nome}}</h1>
+    <h1>CPF:{{cliente.cpf}}</h1>
+    <h1>CNPJ:{{cliente.cnpj}}</h1>
+    <h1>RG:{{cliente.rg}}</h1>
+    <h1>email:{{cliente.email}}</h1>
+    <h1>telefone Celular:{{cliente.telCelular}}</h1>
+    <h1>telefone Fixo:{{cliente.telFixo}}</h1>
+    <h1>Data de Encerramento:{{cliente.dt_enc}}</h1>
+    <h1>Telefones Extras:
+    <ul>
+        {% for t in cliente.telefones.all %}
+        <li>{{ t.numero }}</li>
+        {% endfor %}
+    </ul>
+    </h1>
+
+</div>
+
+<div class="row top-buffer">
+    <table class="table table-bordered">
+        {% for cliente in lista %}
+        <tr>
+            <td>
+                
+                <ul>
+                    {% for t in cliente.telefones.all %}
+                    <li>{{ t.numero }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+        {% endfor %}
+</div>
+
+{% endblock conteudo %}

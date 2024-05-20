@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Lista de Recebimentos{% endblock %}
+
+{% block conteudo %}
+
+<div class='offset-1 col-10 list-div'>
+    <h1> Lista de Recebimentos </h1>
+        <a id='add-link' href='/novorecebimento/'>
+            <div class='col-2 add-div'>
+                <i class='fas fa-plus'></i>Adicionar Recebimento 
+            </div>
+        </a>
+
+    <div class='col-9 search-div'>
+        <form method='GET' id='search-form'>
+            <input class='form-control' type='text' id='search' name='search' placeholder='Digite o nome .....' value='{{ request.GET.search }}'>
+            <i class='fas fa-search' id='search-btn'></i>
+        </form>
+    </div>
+
+    {% if messages %}
+        <ul class='messages'>
+            {% for message in messages %}
+                <li {% if message.tags %} class='alert alert-{{message.tags}}'{% endif %}>{{message}}</li>
+
+            {% endfor %}
+
+        </ul>
+
+    {% endif %}
+
+
+   
+    <ul class='lista_recebimento'>
+        {% for recebimento in recebimentos %}
+        <li class='item-recebimento'>
+
+            <span><a href='/recebimento/{{recebimento.id}}'>
+                {{recebimento.dt_real}}
+                {{recebimento.remetente}}
+                {{recebimento.valor}}</span>
+            <a href='/delete/{{recebimento.id}}' class='delete-btn'><span><i class='fas fa-trash'></i></span></a>
+            <a href='/editRecebimento/{{recebimento.id}}'><span><i class='fas fa-edit'></i></span></a>
+        </li>   
+        {% endfor %}
+    </ul>
+
+    <div class='pagination'>
+        <span class='step-links'>
+            {% if recebimentos.has_previous %}
+                <a href='?page={{ recebimentos.previous_page_number }}'><i class='fas fa-arrow-left'></i></a>
+            {% endif %}
+
+            {% if recebimentos.paginator.num_pages%}
+            <span class='current'>
+                {{ recebimentos.number }} de {{ recebimentos.paginator.num_pages }}
+            </span>
+            {% endif %}
+
+            {% if recebimentos.has_next %}
+                <a href='?page={{ recebimentos.next_page_number }}'><i class='fas fa-arrow-right'></i></a>
+            {% endif %}
+
+        </span>
+    </div>    
+
+</div> 
+
+{% endblock%}

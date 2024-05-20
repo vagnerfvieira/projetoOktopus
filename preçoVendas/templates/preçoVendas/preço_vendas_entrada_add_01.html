@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block conteudo %}
+
+<div class='offset-1 col-10 list-div'>
+  
+    <a id='add-link' href='/estoque_entrada_list/'>
+        <div class='col-2 add-div'>
+            <i class='fas fa-plus'></i>Voltar
+        </div>
+    </a>
+
+    <h1>Formação de Preço</h1>
+    <form method='POST'>
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        {{ form_preçoVendaItens.management_form}}
+
+        {% for ft in form_preçoVendaItens %}
+        <div class="inlineform">
+        {{ ft }}
+        <hr>
+        </div>
+        {% endfor %}
+
+        
+        <input type='submit' class='btn btn-success' value='Cadastrar Preço de Venda'> 
+    </form>
+        
+
+</div> 
+
+
+{% endblock conteudo %}
+
+
+{% block scripts %}
+
+<script type="text/javascript">
+    $(function() {
+       $('.inlineform').formset({
+           prefix: '{{ form_preçoVendaItens.prefix }}',
+           addText: 'Adicionar produto',
+           deleteText: 'Excluir produto',
+       });
+   })
+
+   jQuery('input').on('keyup',function(){
+    var quantidade = parseInt(jQuery('#id_preçoVenda-0-quantidade').val() != '' ? jQuery('#id_preçoVenda-0-quantidade').val() : 0);
+    var valorUnit = parseInt(jQuery('#id_preçoVenda-0-valorUnit').val() != '' ? jQuery('#id_preçoVenda-0-valorUnit').val() : 0);
+
+    var descontos = parseInt(jQuery('#id_preçoVenda-0-descontos').val() != '' ? jQuery('#id_preçoVenda-0-descontos').val() : 0);
+    var impostosRec = parseInt(jQuery('#id_preçoVenda-0-impostosRec').val() != '' ? jQuery('#id_preçoVenda-0-impostosRec').val() : 0);
+    var fretes = parseInt(jQuery('#id_preçoVenda-0-fretes').val() != '' ? jQuery('#id_preçoVenda-0-fretes').val() : 0);
+    var seguros = parseInt(jQuery('#id_preçoVenda-0-seguros').val() != '' ? jQuery('#id_preçoVenda-0-seguros').val() : 0);
+    var subsTrib = parseInt(jQuery('#id_preçoVenda-0-subsTrib').val() != '' ? jQuery('#id_preçoVenda-0-subsTrib').val() : 0);
+    var outrosCustos = parseInt(jQuery('#id_preçoVenda-0-outrosCustos').val() != '' ? jQuery('#id_preçoVenda-0-outrosCustos').val() : 0);
+    
+
+  jQuery('#id_preçoVenda-0-custoTotal').val((descontos + fretes + seguros +subsTrib + outrosCustos));
+  var custoTotal = parseInt(jQuery('#id_preçoVenda-0-custoTotal').val() != '' ? jQuery('#id_preçoVenda-0-custoTotal').val() : 0);
+  jQuery('#id_preçoVenda-0-percentualImposto').val((custoTotal +(quantidade*valorUnit)) * (percentualImpostoc/100));
+
+  
+  jQuery('#id_preçoVenda-0-custoTotal').val((custoTotal +(quantidade*valorUnit)) * (percentualImposto/100) + custoTotal);
+
+  jQuery('#id_preçoVenda-0-preçoVendaTotal').val((custoTotal +(quantidade*valorUnit)) * (percentualImposto/100) + custoTotal+(quantidade*valorUnit));
+  
+})
+
+
+</script>
+
+
+{% endblock scripts %}

@@ -1,0 +1,36 @@
+* Url:
+path(url, view, name):
+os dois primeiros argumentos são obrigatórios(url e view)
+url:é o caminho que o usuário deve acessar
+view:função
+name= o nome que serve para acionar a view(apelido da view)
+
+*View
+A view possue dois passos obrigatórios:
+1)recebe um request como argumento, recebe a requisão do usuário.
+2)sempre retorna algo
+
+No retorno da view devemos usar o comando 'request' que recebe dois parametros: request e o template
+
+*Extendendo Templates
+video 06
+No arquivo que ira receber as alterações css deve iniciar com {% load static %}, e deve ser criado o link css apontando para pasta e no final da pagina acrescentar o javascript.
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<input type="text" placeholder="Multa" name="multa" id="multa" value="">
+<input type="text" placeholder="Juros" name="juros" id="juros" value="">
+<input type="text" placeholder="Desconto" name="desconto" id="desconto" value="">
+<br>
+<br>
+<input type="text"  placeholder="total" name="total" id="total" value="">
+
+ jQuery('input').on('keyup',function(){
+  var m = parseInt(jQuery('#multa').val() != '' ? jQuery('#multa').val() : 0);
+  
+  var j = parseInt(jQuery('#juros').val() != '' ? jQuery('#juros').val() : 0);
+  
+  var d = parseInt(jQuery('#desconto').val() != '' ? jQuery('#desconto').val() : 0);
+  
+  jQuery('#total').val((m + j) - d);
+    
